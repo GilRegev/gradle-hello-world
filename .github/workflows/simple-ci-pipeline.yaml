@@ -45,12 +45,7 @@ jobs:
       - name: Debug Secrets and Version
         run: |
           echo "DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'"
-          echo "VERSION: '${{ env.VERSION }}'"|
-
-      - name: Export Variables
-        run: |
-          echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
-          echo "VERSION=${{ env.VERSION }}" >> $GITHUB_ENV
+          echo "VERSION: '${{ env.VERSION }}'"
 
 
 
