@@ -42,6 +42,12 @@ jobs:
           name: app
           path: build/libs/*.jar
 
+      - name: Debug Secrets and Version
+        run: |
+          echo "DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'"
+          echo "VERSION: '${{ env.VERSION }}'"
+
+
   docker:
     runs-on: ubuntu-latest
     needs: build
