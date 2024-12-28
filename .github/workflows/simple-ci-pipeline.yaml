@@ -48,6 +48,13 @@ jobs:
           echo "VERSION: '${{ env.VERSION }}'"
 
 
+          - name: Export Variables
+            run: |
+              echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
+              echo "VERSION=${{ env.VERSION }}" >> $GITHUB_ENV
+
+
+
   docker:
     runs-on: ubuntu-latest
     needs: build
@@ -66,7 +73,6 @@ jobs:
         run: |
           docker build --progress=plain -t $DOCKER_USERNAME/my-app:$VERSION -f ./Dockerfile .
           docker tag ${{ secrets.DOCKER_USERNAME }}/my-app:${{ env.VERSION }} ${{ secrets.DOCKER_USERNAME }}/my-app:latest
-
 
       # Step 9: Push Docker Image
       - name: Push Docker Image
